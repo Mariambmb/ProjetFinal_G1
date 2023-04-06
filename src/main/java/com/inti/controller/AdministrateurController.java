@@ -3,6 +3,7 @@ package com.inti.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -26,6 +27,7 @@ import com.inti.repository.IGerantRepository;
 
 @RestController
 @RequestMapping("admin")
+@CrossOrigin(origins = {"http://localhost:4200", "http://localhost:4201"})
 public class AdministrateurController {
 
 	@Autowired
@@ -50,7 +52,6 @@ public class AdministrateurController {
 	@PostMapping("ajouterClient")
 	public ClientAttente inscriptionClient(@RequestBody ClientAttente c)
 	{
-		
 		return icar.save(c);
 	}
 	 
@@ -60,13 +61,17 @@ public class AdministrateurController {
 		return icar.findAll();
 	}
 	
-	@DeleteMapping("validerClient/{id}")
-	public void validerClientAttente(@RequestBody Client c, @PathVariable int id)
+	@PostMapping("validerClient")
+	public void validerClientAttente(@RequestBody Client c)
 	{
 		icr.save(c);
-		icar.deleteById(id);
 	}
 	
+	@DeleteMapping("deleteClient/{id}")
+	public void deleteClientAttente(@PathVariable("id") int id)
+	{
+		icar.deleteById(id);
+	}
 	
 	//Ajouter admin
 	@PostMapping("ajouterAdmin")
@@ -82,10 +87,15 @@ public class AdministrateurController {
 		return iaar.findAll();
 	}
 	
-	@DeleteMapping("validerAdmin/{id}")
-	public void validerAdminAttente(@RequestBody Administrateur a, @PathVariable int id)
+	@PostMapping("validerAdmin")
+	public void validerAdminAttente(@RequestBody Administrateur a)
 	{
 		iar.save(a);
+	}
+	
+	@DeleteMapping("deleteAdmin/{id}")
+	public void deleteAdminAttente(@PathVariable("id") int id)
+	{
 		iaar.deleteById(id);
 	}
 	
@@ -103,10 +113,15 @@ public class AdministrateurController {
 		return igar.findAll();
 	}
 		
-	@DeleteMapping("validerGerant/{id}")
-	public void validerGerantAttente(@RequestBody Gerant g, @PathVariable int id)
+	@PostMapping("validerGerant")
+	public void validerGerantAttente(@RequestBody Gerant g)
 	{
 		igr.save(g);
+	}
+	
+	@DeleteMapping("deleteGerant/{id}")
+	public void deleteGerantAttente(@PathVariable("id") int id)
+	{
 		igar.deleteById(id);
 	}
 }
