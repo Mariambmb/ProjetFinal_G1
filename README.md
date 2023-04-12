@@ -447,8 +447,8 @@ Quand l'administrateur valide une demande, l'objet PersonneAttente est supprimé
 *Fonctionnalité gérant:
  <ul>
   -En FrontEnd -> sur Angular
-  <li> Coté gérant : Utiliser ngIf() pour rendre indispobible les boutons proposer offres si aucun id client n'est entré : 1) donner un id au input : <input type="text" [(ngModel)]="idClient"> 2) <button *ngIf="idClient != null;else faux" (click)="proposerListeOffres(idClient)"> 3)  <ng-template #faux>
-      <p>Entrez d'abord un ID client</p> </ng-template>
+  <li> Coté gérant : Utiliser ngIf() pour rendre indispobible les boutons proposer offres si aucun id client n'est entré : 1) donner un id au input : " <input type="text" [(ngModel)]="idClient"> " 2) " <button *ngIf="idClient != null;else faux" (click)="proposerListeOffres(idClient)"> " 3) " <ng-template #faux>
+      <p>Entrez d'abord un ID client</p> </ng-template>"
       <br> 
   - Retravail de l'affichage des listes, vérification accès des bonnes pages avec toutes les connections (gérant/admin/client). 
   </li><li>
