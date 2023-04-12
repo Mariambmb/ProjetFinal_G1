@@ -26,4 +26,6 @@ public interface IOffreRepository extends JpaRepository<Offre, Integer>{
 //	@Query(value = "select * from Offre where  surface=:surface and nb_piece=:nb_piece", nativeQuery = true)
 //	List<Offre> rechercheOffreSurface(@Param ("surface") double surface,  @Param ("nb_piece") int nb_piece);
 
+
+
 }

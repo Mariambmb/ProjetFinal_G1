@@ -1,14 +1,9 @@
 package com.inti.controller;
-
 import java.util.ArrayList;
 import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
-
 import org.springframework.data.repository.query.Param;
-
 import org.springframework.web.bind.annotation.CrossOrigin;
-
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -40,6 +35,10 @@ public class ClientController {
 	@Autowired
 	IGerantRepository igr;
 
+	
+	/*Recherche avancée selon plusieurs critères : voir Angular
+	 * Faire un bouton qui affiche tous les offres + boutons de trie selon un critere donnee*/ 
+   
 	// CRUD client (inscription, liste, suppression) -> voir gerant
 
 //	@GetMapping("listeClients")
@@ -88,8 +87,7 @@ public class ClientController {
 			e.printStackTrace();
 		}
 		return listeOffres;
-		 
-	}
+  	}
 	// Consulter les informations d'une offre selectionnée
 
 	@GetMapping("consulterInfos/{id}")
