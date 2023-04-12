@@ -63,7 +63,7 @@
         <th scope="col">Exterieur disponible</th>
         <th scope="col">Note</th>
         <th scope="col">Croquis</th>
-        <th scope="col">Noter</th>
+        <th scope="col">Action</th>
       </tr>
     </thead>
     <tbody *ngFor="let o of listeOffres$ | async" style="border-color: antiquewhite;border-width: 3px;margin: auto;">
@@ -79,6 +79,7 @@
         <td scope="col">{{o.meuble}}</td>
         <td scope="col">{{o.achat}}</td>
         <td scope="col">{{o.exterieur}}</td>
+        
         <td scope="col" *ngIf="moyennesNotes[o.id] !== undefined">{{moyennesNotes[o.id] | number:'1.1-1'}}/5</td>
         <td scope="col" *ngIf="moyennesNotes[o.id] === undefined"><button (click)="getMoyenneNotes(o.id)">Afficher la moyenne</button></td>
         <td scope="col"><img src="{{o.croquis}}" width="90%"></td>
