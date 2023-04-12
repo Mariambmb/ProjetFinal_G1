@@ -224,7 +224,7 @@ Problème d'execution : utilisation de console.log() pour vérifier les étapes 
 </ul> <br>
 
 //Jour4// (Scrum master : Théodore Michielin)<br>
-<li>04/04/2023</li><br>
+04/04/2023<br>
 
 - Compte rendu du reunion à 9h :
 <ul>
@@ -245,8 +245,7 @@ Problème d'execution : utilisation de console.log() pour vérifier les étapes 
  <li> Formulaires de création de client, gérant et utilisateurs finis</li><li>
  Création d'un component qui affiche la liste de toutes les personnes en attente avec un tableau et *ngFor="let x of listeX$ | async et qui permet à l'admin de valider ou supprimer une demande de compte avec des buttons <br>
 Les buttons appellent des fonctions valider() et supprimer() dans le component.ts <br>
-Quand l'administrateur valide une demande, l'objet PersonneAttente est supprimé (sous la forme de ClientAttente, GerantAttente ou AdminAttente) et un objet Personne est créé (sous la forme de Client, Gerant ou Administrateur)
-</li>
+Quand l'administrateur valide une demande, l'objet PersonneAttente est supprimé (sous la forme de ClientAttente, GerantAttente ou AdminAttente) et un objet Personne est créé (sous la forme de Client, Gerant ou Administrateur)</li>
 </ul> <br>
 
  *Fonstionnalité gérant 
@@ -283,7 +282,7 @@ Quand l'administrateur valide une demande, l'objet PersonneAttente est supprimé
   Ajouter les fonctions pour supprimé et modifié une offre (identiques à celles dans la liste de toutes les offres).
   </ul>
      - En back-end 
-   Faire appel aux fonctions (CRUD) dans le controller de la classe gérant et s'assurer de la connexion (que les fonctions aient le même nom, URL et URI correctes).  <li>
+   Faire appel aux fonctions (CRUD) dans le controller de la classe gérant et s'assurer de la connexion (que les fonctions aient le même nom, URL et URI correctes).
   <ul>
      - Etablissement du front global (page d'accueil du site)
   </ul>
@@ -324,11 +323,10 @@ Quand l'administrateur valide une demande, l'objet PersonneAttente est supprimé
  -En BackEnd -> sur Eclipse
   <li> Fonction sauvegarder une offre  : 
 (Objectif proposé une offre)  : création d'une liste d'offre en attribut coté gérant et coté client. Dans les deux controller (client et gérant) ajouter une foncition qui a partir d'un id récupère (getByRereference(id) ) et sauvegarde une offre dans une liste propore à chaque classe. L'objectif est que le gérant puisse envoyer une offre dans la liste du client, mais aussi dans sa propre liste (pour pouvoir envoyé la liste complète plus tard) et que le client puisse sauvegardé des offres par lui même.
- </li>
- <li> 
+ </li> 
   -En FrontEnd -> sur Angular 
  <li> 
- <br> Coté gérant : faire un fonction qui récupère l'id d'une offre (récupérere depuis affichage dans une liste/boucle) et l'ajoute à la liste des propositions du gérant. Mettre cette fonction activé dans un bouton dans une la liste de toutes les offres gérants avec modifier/ajouter un corquis et supprimer offre. <br>
+ Coté gérant : faire un fonction qui récupère l'id d'une offre (récupérere depuis affichage dans une liste/boucle) et l'ajoute à la liste des propositions du gérant. Mettre cette fonction activé dans un bouton dans une la liste de toutes les offres gérants avec modifier/ajouter un corquis et supprimer offre. <br>
  Afficher la liste des propositions dans une liste et une page html spécifique.
 <br><br> Coté client : ajouter la même fonction comme fonction supplémentaire pour sauvegarder une offre. Bouton sur la liste des offres coté client. Afficher la liste propositions du client dans une page html.
  </li></ul>
