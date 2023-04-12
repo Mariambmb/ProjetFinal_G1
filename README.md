@@ -93,6 +93,7 @@
 </ul>
 
 - Répartition des fonctionnalités entre les personnes de l'équipe<br>
+
 *Fonctionnalite Gerant: Acceder aux listes (client et offres)
 <ul>
  -En BackEnd -> Création et configuration du controller. 
@@ -310,12 +311,27 @@ Quand l'administrateur valide une demande, l'objet PersonneAttente est supprimé
  On utilise un objet Json pour traduire les objets Personne et PersonneAttente en objet Json: Json.object(new Personne())
 </li>
 </ul> <br>
+
 *Fonctionnalite Client:
 <ul>
   -En FrontEnd -> sur Angular dans le composant offre
  <li>Pas de création de menu deroulant mais des boutons "radios" permettant de selectionnées des criteres</li>
  </li>Probleme d'acces à la BDD, donc importation des tables creés dans la BDD en ligne vers la BDD local => modification du fichier "applications properties" <li>
 </ul> <br>
+
+*Fonctionnalité gérant:
+<ul>
+ -En BackEnd -> sur Eclipse
+  <li> Fonction sauvegarder une offre  : 
+(Objectif proposé une offre)  : création d'une liste d'offre en attribut coté gérant et coté client. Dans les deux controller (client et gérant) ajouter une foncition qui a partir d'un id récupère (getByRereference(id) ) et sauvegarde une offre dans une liste propore à chaque classe. L'objectif est que le gérant puisse envoyer une offre dans la liste du client, mais aussi dans sa propre liste (pour pouvoir envoyé la liste complète plus tard) et que le client puisse sauvegardé des offres par lui même.
+ </li>
+ <li> 
+  -En FrontEnd -> sur Angular 
+ <li> 
+ <br> Coté gérant : faire un fonction qui récupère l'id d'une offre (récupérere depuis affichage dans une liste/boucle) et l'ajoute à la liste des propositions du gérant. Mettre cette fonction activé dans un bouton dans une la liste de toutes les offres gérants avec modifier/ajouter un corquis et supprimer offre. <br>
+ Afficher la liste des propositions dans une liste et une page html spécifique.
+<br><br> Coté client : ajouter la même fonction comme fonction supplémentaire pour sauvegarder une offre. Bouton sur la liste des offres coté client. Afficher la liste propositions du client dans une page html.
+ </li></ul>
 
 //Jour6// (Scrum master :Mariam BAMBA ) <br>
 06/04/2023<br>
@@ -351,6 +367,23 @@ Quand l'administrateur valide une demande, l'objet PersonneAttente est supprimé
 <li> Donc modification de ces boutons afin d'avoir sur la liste des offres des boutons permettant de trier la liste selon les criteres sélectionnés</li>
 </ul> <br>
 
+*Fonctionnalité gérant:
+<ul>
+ -En BackEnd -> sur Eclipse
+  <li> Fonction proposer une offre  : 
+  Dans le controller gérant faire une fonction qui permet d'ajouter une offre dans la liste de propositions du client. Pour cela : 1) récupéré avec son id, offre et  client : soit en demandant l'ID à l'utilisateur dans un input ou bien dans l'affichage des listes (offres ou client) au moment d'appelé la fonction. 2) Fonction proposé offre : requêtte type put car va modifier la liste du client : client.setListe().add (offre ) </li>
+ <li> Fonction proposer des offres  : Dans le controller gérant faire une fonction qui permet d'ajouter toute la liste de propositions du gérant à la liste de propositions du client. Pour cela : 1) Récupéré avec son id, client et  gérant 2) Récupéré la liste des propositions du gérant et l'ajouter dans la liste de proposition du client avec une requette put ( @PutMapping )  et la fonction addAll. <br> 
+ Bien sauvegarder les entité avec save() pour prendre en compte les modification 
+  -En FrontEnd -> sur Angular 
+ <li> 
+ <br> Coté gérant : appelé la fonction pour envoyer la totalité de sa liste dans le html affichage des propositions du gérant.. 
+<br> Dépannage : Optimisation du formulaire ajouté une offre (dont le retrait de la conversion string -> boolean (inutile). 
+<br> Ajouter location.reload(); à la fin des fonction pour recharder la page. <br>
+
+
+<br><br> 
+ </li></ul>
+
 //Jour7// (Scrum master : Charlène Sanchez) <br>
 07/04/2023<br>
 
@@ -376,6 +409,19 @@ Quand l'administrateur valide une demande, l'objet PersonneAttente est supprimé
 <li>fin de la mise en place des boutons de recherche avancées, reflexion sur les fonctions à mettre en place pour trier la liste des offres dès qu'on selectionne une ou plusieurs criteres</li>
 </ul> <br>
 
+*Fonctionnalité gérant:
+<ul>
+  -En BackEnd -> sur Eclipse
+ <li> Tests controller : création pour gérant, client et vérification admin. 
+ Pensez à mettre le bon mappin @GetMapping / @PostMapping / @PutMapping. Verifier les URI (copié collé c'est mieux) et lorsque l'url à beaucoup de / : <br> Exemple : "gerant/fonction/{id}/client/{id}" Mettre l'URL complète au lieu de juste l'URI. Verifier syntaxe :  @pathVariable ("nomVariable") type variable </li><li>
+ </li>
+ </ul>
+ <ul>
+  -En FrontEnd -> sur Angular
+  <li> Utilisation des information de connexion pour récupéré les idClient ou idGérant au lieu de redemandé pour chaque page : avec la connexion  sessionStorage.setItem('id', this.id.toString()) Récupéré avec :  sessionStorage.getItem('id').
+  </li>
+</ul>
+
 //Jour8// (Scrum master : Jérémy Demange) <br>
 11/04/2023<br>
 
@@ -386,7 +432,31 @@ Quand l'administrateur valide une demande, l'objet PersonneAttente est supprimé
 <li>Dans le fichier html : mise en place d'un *ngIf dans le 2e <tr> de la balise table du formulaire afin d'effectuer le trie</li>
 </ul> <br>
 
-
+*Fonctionnalité statistiques:
+<ul>
+  -En BackEnd -> sur Eclipse
+ <li> 
+ Derniers tests avec les fonctions. 
+ </li>
+ </ul>
+ <ul>
+  -En FrontEnd -> sur Angular
+  <li> Traduction des objets Observable<Type> en Type avec la commande this.adminService.fonctionAdminService().subscribe(data => {this.variable=data});
+  </li><li>
+  Difficultés : erreur résolue avec le "countQuery", @CrossOrigin manquant dans un controller
+</li>
+</ul> <br>
+*Fonctionnalité gérant:
+ <ul>
+  -En FrontEnd -> sur Angular
+  <li> Coté gérant : Utiliser ngIf() pour rendre indispobible les boutons proposer offres si aucun id client n'est entré : 1) donner un id au input : <input type="text" [(ngModel)]="idClient"> 2) <button *ngIf="idClient != null;else faux" (click)="proposerListeOffres(idClient)"> 3)  <ng-template #faux>
+      <p>Entrez d'abord un ID client</p> </ng-template>
+      <br> 
+  - Retravail de l'affichage des listes, vérification accès des bonnes pages avec toutes les connections (gérant/admin/client). 
+  </li><li>
+  - Esthétique css: Uniformiser tout les affichages en css: listes, formulaires. 
+</li>
+</ul><br>
 //Jour9 : Fin de Projet// <br>
 12/04/2023
 <br>
