@@ -28,6 +28,7 @@ import com.inti.repository.IClientRepository;
 import com.inti.repository.IGerantRepository;
 import com.inti.repository.IOffreRepository;
 
+
 @RestController
 @RequestMapping("client")
 @CrossOrigin(origins = { "http://localhost:4200", "http://localhost:4201" })

@@ -1,7 +1,9 @@
 package com.inti.model;
 
+import java.util.ArrayList;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -10,19 +12,20 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.PrimaryKeyJoinColumn;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
-
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.ToString.Exclude;
 
+
 @Table(name = "g1_offre")
 @Entity
-@AllArgsConstructor
 @NoArgsConstructor
 @Data
 @JsonIgnoreProperties({ "hibernateLazyInitializer" })
@@ -30,23 +33,27 @@ import lombok.ToString.Exclude;
 public class Offre {
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private int id;
-	private String type_bien;
-	private String adresse;
-	private String ville;
-	private double prix;
-	private double surface;
-	private int nb_piece;
-	private boolean meuble;
-	private boolean achat;
-	private boolean exterieur;
-	private String croquis;
-	private String note;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private int id;
+    private String type_bien;
+    private String adresse;
+    private String ville;
+    private double prix;
+    private double surface;
+    private int nb_piece;
+    private boolean meuble;
+    private boolean achat;
+    private boolean exterieur;
+    private String croquis;
+    @OneToMany(mappedBy = "offre", cascade = CascadeType.ALL)
+    @JsonManagedReference
+    private List<Note> notes = new ArrayList<>();
 
-	@ManyToOne
+    @ManyToOne
 	@JoinColumn(name = "id_agence_immmobiliere")
-	private AgenceImmobiliere agence_immobiliere;
+    private AgenceImmobiliere agence_immobiliere;
+
+
 
 	@Exclude
 	@JsonIgnore
@@ -71,6 +78,28 @@ public class Offre {
 		this.achat = achat;
 		this.exterieur = exterieur;
 		this.croquis = croquis;
+	}
+
+
+	public void ajouterNote(Note note)
+	{
+	note.setOffre(this);
+	notes.add(note);
+	}
+
+	public double MoyenneNotes()
+	{
+		if(notes.size() != 0)
+		{
+			double somme = 0.0;
+			for(Note note : notes)
+			{
+				somme += note.getValeur();
+			}
+			
+			return somme/notes.size();
+		}
+		return 0.0;
 	}
 
 }
