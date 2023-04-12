@@ -87,4 +87,13 @@ getMoyenneNotes(offreId: number): void {
 }
 
 
+sauvegarderOffre(idOffre:number){
+  this.cs.sauvegarderOffre(idOffre, Number(this.idClient)).subscribe();
+  if( this.cs.sauvegarderOffre(idOffre, Number(this.idClient)).subscribe() != null){
+    alert ("Offre sauvegardée");  
+  } else { 
+    alert("ECHEC sauvegarde")
+  }
+  location.reload();
+}
 }

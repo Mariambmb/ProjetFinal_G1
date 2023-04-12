@@ -83,6 +83,7 @@
         <td scope="col" *ngIf="moyennesNotes[o.id] === undefined"><button (click)="getMoyenneNotes(o.id)">Afficher la moyenne</button></td>
         <td scope="col"><img src="{{o.croquis}}" width="90%"></td>
         <td scope="col">
+          <button  *ngIf="role == 'client'" (click)="sauvegarderOffre(o.id)">Sauvergarder</button>
           <input type="number" min="0" max="5" step="0.5" [(ngModel)]="note" name="note" style="width: 60px;">
           <button (click)="ajouterNote(o.id, note)">Noter</button>
         </td>
